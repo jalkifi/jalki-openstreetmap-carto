@@ -1865,6 +1865,18 @@ tertiary is rendered from z10 and is not included in osm_planet_roads. */
           [zoom >= 19] {
             background/line-width: @footway-width-z19 + 2 * @paths-background-width;
           }
+          [mtb_scale = '0'] {
+            background/line-color: #00ff00;
+          }
+          [mtb_scale = '1'] {
+            background/line-color: #fffc00;
+          }
+          [mtb_scale = '2'] {
+            background/line-color: #ffa200;
+          }
+          [mtb_scale = '3'] {
+            background/line-color: #ff0606;
+          }
         }
         line/line-color: @footway-fill;
         [access = 'no'] { line/line-color: @footway-fill-noaccess; }
@@ -2630,6 +2642,14 @@ tertiary is rendered from z10 and is not included in osm_planet_roads. */
 
   [feature = 'aeroway_helipad'][zoom >= 16] {
     polygon-fill: @helipad-fill;
+  }
+
+  [feature = 'highway_path'] {
+    [zoom >= 11] {
+        [mtb_scale = '0'] {
+            line-color: #ff0000;
+        }
+    }
   }
 }
 

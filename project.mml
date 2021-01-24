@@ -689,6 +689,7 @@ Layer:
       table: &roads_sql |-
         (SELECT
             way,
+            mtb_scale,
             (CASE WHEN feature IN ('highway_motorway_link', 'highway_trunk_link', 'highway_primary_link', 'highway_secondary_link', 'highway_tertiary_link') THEN substr(feature, 0, length(feature)-4) ELSE feature END) AS feature,
             horse,
             foot,
@@ -708,6 +709,7 @@ Layer:
                 foot,
                 bicycle,
                 tracktype,
+                "mtb:scale" AS mtb_scale,
                 CASE WHEN surface IN ('unpaved', 'compacted', 'dirt', 'earth', 'fine_gravel', 'grass', 'grass_paver', 'gravel', 'ground',
                                       'mud', 'pebblestone', 'salt', 'sand', 'woodchips', 'clay', 'ice', 'snow') THEN 'unpaved'
                   WHEN surface IN ('paved', 'asphalt', 'cobblestone', 'cobblestone:flattened', 'sett', 'concrete', 'concrete:lanes',
@@ -781,6 +783,7 @@ Layer:
       table: |-
         (SELECT
             way,
+            tags->"mtb:scale" AS mtb_scale,
             COALESCE(
               ('highway_' || (CASE WHEN highway IN ('pedestrian', 'footway', 'service', 'living_street',
                                                     'platform', 'services') THEN highway END)),
